@@ -1,0 +1,26 @@
+[project]
+name = "fnb-email-care"
+version = "0.1.0"
+description = "FNB customer care email assistant: acknowledges customer emails and replies with approved answers."
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "S", "UP"]
+ignore = ["S101"]  # assert is fine in tests
+
+[tool.ruff.lint.flake8-bugbear]
+# FastAPI's dependency injection idiom.
+extend-immutable-calls = ["fastapi.Depends", "fastapi.Query", "app.api.deps.require"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S105", "S106", "S608", "E501"]
+"alembic/*" = ["E501", "I001"]
+"app/dev_seed.py" = ["E501"]  # sample SQL and emails read better on one line

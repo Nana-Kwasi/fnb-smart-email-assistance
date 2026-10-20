@@ -1,0 +1,79 @@
+# Production-style stack for one office server: docker compose up -d --build
+# Needs: a filled-in .env (copy .env.example) and TLS certificates in deploy/certs/.
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: fnb_care
+      POSTGRES_USER: fnb_care
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fnb_care -d fnb_care"]
+      interval: 5s
+      retries: 10
+
+  api:
+    build: ./backend
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      FNB_DATABASE_URL: postgresql+psycopg://fnb_care:${POSTGRES_PASSWORD}@db:5432/fnb_care
+    volumes:
+      - ./deploy/certs:/certs:ro   # e.g. the AD CA certificate for LDAPS
+    depends_on:
+      db:
+        condition: service_healthy
+
+  worker:
+    build: ./backend
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      FNB_DATABASE_URL: postgresql+psycopg://fnb_care:${POSTGRES_PASSWORD}@db:5432/fnb_care
+    command: ["python", "-m", "app.worker"]
+    depends_on:
+      - api   # the api container runs the database migrations first
+
+  web:
+    build: ./frontend
+    restart: unless-stopped
+    ports:
+      - "443:443"
+      - "80:80"
+    volumes:
+      - ./deploy/certs:/etc/nginx/certs:ro
+    depends_on:
+      - api
+
+  # Optional: virus scanning for attachments. Start with: docker compose --profile scanning up -d
+  # then set FNB_CLAMD_HOST=clamav in .env.
+  clamav:
+    image: clamav/clamav:1.4
+    restart: unless-stopped
+    profiles: ["scanning"]
+
+  # Optional: the AI model, on a GPU server. Start with: docker compose --profile ai up -d
+  # Set FNB_LLM_MODEL_ID to the exact Qwen3.5 checkpoint the bank approved (see docs/ai-model-setup.md),
+  # and FNB_LLM_BASE_URL=http://llm:8000/v1, FNB_LLM_FAST_MODEL=<served name> in .env.
+  llm:
+    image: vllm/vllm-openai:${VLLM_VERSION:?pin the vLLM version the bank approved, e.g. VLLM_VERSION=v0.x.y}
+    restart: unless-stopped
+    profiles: ["ai"]
+    command: ["--model", "${FNB_LLM_MODEL_ID:?set FNB_LLM_MODEL_ID}", "--served-model-name", "${FNB_LLM_FAST_MODEL:-qwen}",
+              "--max-model-len", "16384"]
+    volumes:
+      - llm-cache:/root/.cache/huggingface
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+volumes:
+  db-data:
+  llm-cache:

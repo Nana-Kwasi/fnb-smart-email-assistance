@@ -1,0 +1,57 @@
+/* Design tokens. Frosted-glass panels over a soft background; FNB teal and orange for
+   actions, highlights and text accents. Change values here and everything follows. */
+:root {
+  /* Brand */
+  --fnb-teal: #00857f;
+  --fnb-teal-deep: #00615c;
+  --fnb-teal-soft: rgba(0, 133, 127, 0.1);
+  --fnb-orange: #f58220;
+  --fnb-orange-deep: #c9640c;
+  --fnb-orange-soft: rgba(245, 130, 32, 0.12);
+
+  /* Chart series (validated for colour-blind separation and contrast; see README) */
+  --series-1: #009c8f; /* received */
+  --series-2: #5a67c8; /* answered automatically */
+  --series-3: #dd6b0b; /* needed a person */
+  --series-4: #b5487a; /* analytics: further categories */
+  --series-5: #4f8a2b;
+  --series-6: #8a6d1f;
+
+  /* Text */
+  --ink: #14232b;
+  --ink-soft: #4b5d66;
+  --ink-faint: #7b8b93;
+
+  /* Status (always shown with a label or icon, never colour alone) */
+  --ok: #138a52;
+  --ok-soft: rgba(19, 138, 82, 0.12);
+  --warn: #b25d00;
+  --warn-soft: rgba(245, 130, 32, 0.14);
+  --danger: #c2372f;
+  --danger-soft: rgba(194, 55, 47, 0.11);
+  --info: #3d55b5;
+  --info-soft: rgba(90, 103, 200, 0.12);
+  --neutral-soft: rgba(20, 35, 43, 0.06);
+
+  /* Glass */
+  --canvas: #eef3f4;
+  --glass: rgba(255, 255, 255, 0.56);
+  --glass-strong: rgba(255, 255, 255, 0.8);
+  --glass-hover: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.75);
+  --blur: blur(22px) saturate(150%);
+  --shadow: 0 8px 30px rgba(20, 35, 43, 0.07), 0 1px 2px rgba(20, 35, 43, 0.04);
+  --shadow-lg: 0 24px 60px rgba(20, 35, 43, 0.16);
+  --rule: rgba(20, 35, 43, 0.08);
+  --grid: rgba(20, 35, 43, 0.07);
+
+  /* Shape and rhythm */
+  --radius-sm: 10px;
+  --radius: 14px;
+  --radius-lg: 20px;
+  --gap: 20px;
+  --sidebar-width: 268px;
+  --font: "Segoe UI Variable", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Consolas, monospace;
+  --focus: 0 0 0 3px rgba(0, 133, 127, 0.28);
+}

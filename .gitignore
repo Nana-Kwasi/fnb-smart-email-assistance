@@ -1,0 +1,25 @@
+# Secrets
+.env
+.env.*
+!.env.example
+!.env.dev.example
+deploy/certs/*
+!deploy/certs/README.md
+
+# Python
+backend/.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.db
+
+# Node
+frontend/node_modules/
+frontend/dist/
+*.tsbuildinfo
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/

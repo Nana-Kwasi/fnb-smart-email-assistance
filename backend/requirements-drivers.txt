@@ -1,0 +1,8 @@
+# Database drivers for the bank's own databases (FNB_DATA_SOURCES). Install the ones you need.
+#   Oracle:      oracle+oracledb://user:pass@host:1521/?service_name=NAME
+#   SQL Server:  mssql+pymssql://user:pass@host:1433/database
+#   MySQL:       mysql+pymysql://user:pass@host:3306/database
+#   PostgreSQL:  postgresql+psycopg://user:pass@host:5432/database   (already installed)
+oracledb==2.5.1
+pymssql==2.3.2
+PyMySQL==1.1.1

@@ -1,0 +1,96 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink);
+  background-color: var(--canvas);
+  /* Soft colour behind the frosted panels: FNB teal, warm orange and a cool sky tint. */
+  background-image:
+    radial-gradient(52rem 40rem at -5% -10%, rgba(0, 156, 143, 0.22), transparent 62%),
+    radial-gradient(44rem 34rem at 105% -5%, rgba(245, 130, 32, 0.16), transparent 60%),
+    radial-gradient(48rem 40rem at 80% 110%, rgba(90, 103, 200, 0.13), transparent 62%),
+    radial-gradient(40rem 32rem at 10% 105%, rgba(0, 133, 127, 0.12), transparent 60%);
+  background-attachment: fixed;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  line-height: 1.25;
+  font-weight: 650;
+  color: var(--ink);
+}
+
+h1 {
+  font-size: 1.55rem;
+  letter-spacing: -0.01em;
+}
+h2 {
+  font-size: 1.15rem;
+}
+h3 {
+  font-size: 1rem;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--fnb-teal-deep);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
+}
+
+code,
+pre {
+  font-family: var(--mono);
+  font-size: 0.85em;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+input[type="range"],
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--fnb-teal);
+}

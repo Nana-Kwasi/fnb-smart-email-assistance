@@ -1,0 +1,24 @@
+{
+  "note": "Illustrative knowledge base for isolated model benchmarking only. Not FNB's real figures.",
+  "documents": [
+    {"name": "Branch information", "category": "Branches", "entries": [
+      {"title": "What are your branch opening hours?", "content": "Branches are open 08:30 to 16:00, Monday to Friday."},
+      {"title": "Are branches open on Saturday?", "content": "Selected branches are open on Saturday from 09:00 to 12:00. Check the branch locator in the app."}
+    ]},
+    {"name": "Accounts guide", "category": "Accounts", "entries": [
+      {"title": "What do I need to open a savings account?", "content": "Bring your Ghana Card, proof of address such as a recent utility bill, and a passport photo to any branch."},
+      {"title": "What is the SWIFT code?", "content": "Use the SWIFT code shown on your account confirmation letter or in the app under Account details."}
+    ]},
+    {"name": "Digital banking help", "category": "Digital banking", "entries": [
+      {"title": "How do I reset my app PIN?", "content": "On the login screen tap Forgot PIN and follow the steps. You will need your registered phone number. Never share your PIN or one-time codes with anyone."},
+      {"title": "How do I register for online banking?", "content": "Download the app, tap Register, and follow the steps using your account number and registered phone number."}
+    ]},
+    {"name": "Fees and charges", "category": "Fees and charges", "entries": [
+      {"title": "What is the fee for a transfer to another bank?", "content": "Transfers to other banks through the app cost GHS 5 per transfer."},
+      {"title": "How much is a replacement debit card?", "content": "A replacement debit card costs GHS 30 and is ready for collection at your branch within 5 working days."}
+    ]},
+    {"name": "Contact us", "category": "General", "entries": [
+      {"title": "What is the contact centre number?", "content": "Call the contact centre on the number printed on the back of your card, available 24 hours a day."}
+    ]}
+  ]
+}
